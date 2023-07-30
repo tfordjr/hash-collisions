@@ -1,17 +1,19 @@
-# CS 4732 Project 3 Hash Collisions with SHA-256
+# CS 4732 07/30/2023 Terry Ford Project 3 Hash Collisions with SHA-256 
 
 from hashlib import sha256
 import fileinput
 import time
 start = time.time()
 
-filename = 'HP Books.txt'
+filename = "HP Books.txt"
 count = 0
 hashmap = {}
 
 with open(filename, encoding="utf-8") as f:
     for line in f:                
-        hash = sha256(line.encode('utf-8')).hexdigest()      
+        hash = sha256(line.encode('utf-8')).hexdigest()    
+
+        # print(hash)  
 
         if hash not in hashmap.keys():    # If hash value not present in hashmap
             hashmap[hash] = line          # Assign this key-value (hash-plaintext) keypair. 
@@ -21,8 +23,4 @@ with open(filename, encoding="utf-8") as f:
         count = count + 1
 
 end = time.time()
-
-# print(hashmap)
-# for hash in hashmap:
-#     print(hashmap[hash])
 print(count, 'lines hashed in', (end-start), 'seconds')
